@@ -8,11 +8,14 @@ var turn = 1; // 1 black 2 white
 let turnNum = -1;
 let isStart = false;
 
-var boardArray = new Array(25);
-for (var i = 0; i < 25; i++) {
-  boardArray[i] = new Array(25);
-  for (var j = 0; j < 25; j++) {
-    boardArray[i][j] = 0;
+var boardArray;
+function clearBoard(){
+  boardArray = new Array(25);
+  for (var i = 0; i < 25; i++) {
+    boardArray[i] = new Array(25);
+    for (var j = 0; j < 25; j++) {
+      boardArray[i][j] = 0;
+    }
   }
 }
 
@@ -77,7 +80,7 @@ function updateBoard() {
     }
   }
 }
-
+clearBoard();
 updateBoard();
 
 /* Mouse Event */
@@ -183,16 +186,25 @@ function isClicked(xPos, yPos) {
 
 /* is Omok?? */
 function checkOmok(turn, xPos, yPos) {
-  if (addOmok(turn, xPos, yPos, -1, -1) + addOmok(turn, xPos, yPos, 1, 1) === 5)
-    alert(`Player ${turn} Win~~!!`);
-  else if (addOmok(turn, xPos, yPos, 0, -1) + addOmok(turn, xPos, yPos, 0, 1) === 5)
-    alert(`Player ${turn} Win~~!!`);
-  else if (addOmok(turn, xPos, yPos, 1, -1) + addOmok(turn, xPos, yPos, -1, 1) === 5)
-    alert(`Player ${turn} Win~~!!`);
-  else if (addOmok(turn, xPos, yPos, -1, 0) + addOmok(turn, xPos, yPos, 1, 0) === 5)
-    alert(`Player ${turn} Win~~!!`);
+  if (addOmok(turn, xPos, yPos, -1, -1) + addOmok(turn, xPos, yPos, 1, 1) === 5){
+    gameSet();
+  }
+  else if (addOmok(turn, xPos, yPos, 0, -1) + addOmok(turn, xPos, yPos, 0, 1) === 5){
+    gameSet();
+  }
+  else if (addOmok(turn, xPos, yPos, 1, -1) + addOmok(turn, xPos, yPos, -1, 1) === 5){
+    gameSet();
+  }
+  else if (addOmok(turn, xPos, yPos, -1, 0) + addOmok(turn, xPos, yPos, 1, 0) === 5){
+    gameSet();
+  }
 }
-
+function gameSet(){
+  alert(`Player ${turn} Win~~!!`);
+  clearBoard();
+  updateBoard();
+  turn = 1;
+}
 function addOmok(turn, xPos, yPos, xDir, yDir) {
   if (xPos + xDir < 0) return 0;
   if (xPos + xDir > 24) return 0;
