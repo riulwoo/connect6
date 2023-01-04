@@ -1,6 +1,6 @@
 # connect6 
- 2인용 육목입니다.
-
+2인용 육목입니다.
+### [체험해보기](https://riulwoo.github.io/connect6/)
 ## ref
  clucle님의 https://github.com/clucle/omok 을 참고하여 제작했습니다.
 
